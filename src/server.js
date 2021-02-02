@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require("cors");
 const {postRouter} = require("./routes/post");
 const {userRouter} = require("./routes/user");
+const path = require("path");
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -13,12 +14,10 @@ app.use(express.json());
 //use CORS
 app.use(cors());
 
-// //serve on port 5000 the static file
-// app.use(express.static('build'));
-// const path = require('path');
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve('./', 'build', 'index.html'));
-// });
+//serve on port 5000 the static file
+const public_directory = path.join(__dirname, "../client/build")
+app.use(express.static(public_directory));
+
 
 //import routers
 app.use(userRouter);
