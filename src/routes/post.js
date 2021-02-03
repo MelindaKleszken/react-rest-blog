@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {listAllPosts, listUserPosts, addNewPost, updatePost, deletePost } = require("../controllers/post");
+const {listAllPosts, listUserPosts, addNewPost, updatePost, deletePost} = require("../controllers/post");
 const postRouter = Router();
 
 //post PART

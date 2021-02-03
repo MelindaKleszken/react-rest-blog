@@ -1,5 +1,19 @@
-// const {postRouter} = require("..../src/routes/post");  
-// const {listAllPosts, listUserPosts, addNewPost, updatePost, deletePost } = require("..../src/controllers/post");
+import React from 'react';
 
-// const allPost = postRouter.get("/posts", listAllPosts);
-// console.log(allPost);
+const ShowPost = (props) => {
+    return (
+      <div className="newPost">
+        {props.content.map((post, index) => {
+          return (
+            <div className="singlePost" key={index}>
+              <p>{post.content}</p>
+              <p>{post.CreatedAt}</p>
+            </div>
+          )
+        })};
+      </div>
+    )
+  };
+  
+
+  export default ShowPost;

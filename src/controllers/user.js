@@ -1,5 +1,6 @@
 const {User} = require('../models/User');
 
+//list all users with details
 exports.getAllUsers = async (req,res) => {
     try {
         const allUsers = await User.find({});
@@ -9,6 +10,19 @@ exports.getAllUsers = async (req,res) => {
     }
 };
 
+
+//list all user names
+// exports.getAllUserNames = async (req,res) => {
+//     try {
+//         const allUserNames = await User.find({*, name: req.params.name});
+//         console.log(allUserNames)
+//         res.status(200).send(allUserNames);
+//     } catch (error) {
+//         res.status(500).send(error);
+//     }
+// };
+
+//add new user
 exports.addUser = async (req, res) => {
     try {
      const user = new User(req.body);
@@ -19,6 +33,7 @@ exports.addUser = async (req, res) => {
     }
 };
 
+//update user by ID
 exports.updateUserById = async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -29,6 +44,7 @@ exports.updateUserById = async (req, res) => {
     }
 };
 
+//delete user by ID
 exports.deleteUser = async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id)

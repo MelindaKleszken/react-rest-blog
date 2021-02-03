@@ -35,7 +35,7 @@ exports.addNewPost = async (req, res) => {
     }
 };
 
-
+//find post by user ID
 exports.getPostsByUser = async (req, res) => {
   try {
     const allPosts = await Post.find({ author: req.params.user_id });

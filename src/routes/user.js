@@ -10,6 +10,7 @@ const userRouter = Router();
 //simpler way
 userRouter.route("/users").get(getAllUsers).post(addUser)
 userRouter.route("/users/:id").patch(updateUserById).delete(deleteUser)
+//userRouter.route("/users/all").get(getAllUserNames)
 
 
 module.exports = {

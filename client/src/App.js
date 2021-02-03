@@ -1,34 +1,62 @@
 //import logo from './logo.svg';
 import './App.css';
-import React from "react";
+import React, {useState, useEffect } from 'react';
+//import ShowPost from './components/Post';
 
-class App extends React.Component {
-  state = {
-    data: []
-  }
+function App() {
+  //const [usersList, setUsersList] = useState("");
+  const [posts, setPosts] = useState('');
+  const [isLoaded, setLoaded] = useState(false)
 
-  componenentDidMount = () => {
-    fetch("http://localhost:5000/")
-    .then((res) => res.json())
-    .then ((data) => {
-      this.setState({data:data.value});
-      console.log(data);
-    })
+  useEffect(() => {
+    fetchPosts()
+  });
+
+  // Create async function for fetching posts list
+  const fetchPosts = async () => {
+    const res = await fetch('http://localhost:5000/posts/')
+    const data = res.json() // Process the incoming data
+        // Updatestate
+        
+        setPosts(data);
+        setLoaded(true);
   };
-  componentDidUpdate(){
-    console.log(this.state.data);
-  }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p> All users: {this.state.data} </p>
+  return (
+    <div className="App">
+      <header className="App-header">
 
-        </header>
-      </div>
+        <button onClick={fetchPosts}>Fetch posts</button>
+
+        <p>Posts</p> 
+        <ShowPost isLoaded={isLoaded} content={posts}/>
+      </header>
+    </div>
     );
+
+ 
+};
+
+const ShowPost = (props) => {
+  if (props.isLoaded) {
+    console.log('loading')
+  return (
+    <div className="newPost">
+      {props.content.map((post, index) => {
+        return (
+          <div className="singlePost" key={index}>
+            <p>{post.content}</p>
+            <p>{post.CreatedAt}</p>
+          </div>
+        )
+      })};
+    </div>
+  )} else {
+    return (
+      <h1>waiting...</h1>
+    )
   }
+
 };
 
 export default App;
