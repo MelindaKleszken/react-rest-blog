@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 
+
 const ShowPost = (props) => {
   if (props.isLoaded) {
     //check if loading
@@ -14,8 +15,7 @@ const ShowPost = (props) => {
         let preDate = post.createdAt.split("");
         let year = preDate.slice(0,10).join('').concat();
         let hour = preDate.slice(11,19).join('').concat();
-        let cleanDate = year+", "+hour
-        console.log(cleanDate);
+        let cleanDate = year+", "+hour;
 
         return (
           //create the layout for each post
@@ -31,7 +31,6 @@ const ShowPost = (props) => {
       <h1>waiting...</h1>
     )
   }
-
 };
 
-  export default ShowPost;
+export default ShowPost;
