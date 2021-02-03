@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect } from 'react';
-//import ShowPost from './components/Post';
+import ShowPost from './components//post/function';
 
 function App() {
   //const [usersList, setUsersList] = useState("");
@@ -10,14 +10,13 @@ function App() {
 
   useEffect(() => {
     fetchPosts()
-  });
+  }, []);
 
   // Create async function for fetching posts list
   const fetchPosts = async () => {
     const res = await fetch('http://localhost:5000/posts/')
-    const data = res.json() // Process the incoming data
+    const data = await res.json() // Process the incoming data
         // Updatestate
-        
         setPosts(data);
         setLoaded(true);
   };
@@ -28,7 +27,7 @@ function App() {
 
         <button onClick={fetchPosts}>Fetch posts</button>
 
-        <p>Posts</p> 
+        <p>React Blog</p> 
         <ShowPost isLoaded={isLoaded} content={posts}/>
       </header>
     </div>
@@ -37,26 +36,5 @@ function App() {
  
 };
 
-const ShowPost = (props) => {
-  if (props.isLoaded) {
-    console.log('loading')
-  return (
-    <div className="newPost">
-      {props.content.map((post, index) => {
-        return (
-          <div className="singlePost" key={index}>
-            <p>{post.content}</p>
-            <p>{post.CreatedAt}</p>
-          </div>
-        )
-      })};
-    </div>
-  )} else {
-    return (
-      <h1>waiting...</h1>
-    )
-  }
-
-};
 
 export default App;
