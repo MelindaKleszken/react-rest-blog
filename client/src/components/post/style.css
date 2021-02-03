@@ -7,7 +7,7 @@
     margin: 2vh;
 }
 
-.postDate{
+.postDetails{
     font-size: calc(8px + 1vmin);
     font-style: italic;
 }

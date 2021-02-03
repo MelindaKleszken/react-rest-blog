@@ -7,6 +7,7 @@ function App() {
   //const [usersList, setUsersList] = useState("");
   const [posts, setPosts] = useState('');
   const [isLoaded, setLoaded] = useState(false)
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     fetchPosts()
@@ -21,11 +22,17 @@ function App() {
         setLoaded(true);
   };
 
+  const fetchUsers = async () => {
+    const res = await fetch('http://localhost:5000/users/')
+    const data = await res.json()
+    setUser(data);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
 
-        <button onClick={fetchPosts}>Fetch posts</button>
+        <button onClick={(fetchPosts, fetchUsers)}>Fetch posts</button>
 
         <p>React Blog</p> 
         <ShowPost isLoaded={isLoaded} content={posts}/>
